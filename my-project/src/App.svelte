@@ -1,6 +1,7 @@
 
 
 <main>
+	<!-- color switching -->
 	<h1>{color}</h1> <h2>{name}!</h2>
 	<h3>{color} jean</h3>
 	<div class="flexy">
@@ -11,36 +12,52 @@
 		</div>
 	</div>
 
-	<button on:click={changeColor} value="change">update jean color</button>
+	<!-- progress bar -->
+	<div>
+		<button on:click={changeColor} value="change">update jean color</button>
 
-	<progress value={$progress}></progress>
+		<progress value={$progress}></progress>
 
-	<button on:click="{() => progress.set(0)}">
-		0%
-	</button>
+		<button on:click="{() => progress.set(0)}">
+			0%
+		</button>
 
-	<button on:click="{() => progress.set(0.25)}">
-		25%
-	</button>
+		<button on:click="{() => progress.set(0.25)}">
+			25%
+		</button>
 
-	<button on:click="{() => progress.set(0.5)}">
-		50%
-	</button>
+		<button on:click="{() => progress.set(0.5)}">
+			50%
+		</button>
 
-	<button on:click="{() => progress.set(0.75)}">
-		75%
-	</button>
+		<button on:click="{() => progress.set(0.75)}">
+			75%
+		</button>
 
-	<button on:click="{() => progress.set(1)}">
-		100%
-	</button>
+		<button on:click="{() => progress.set(1)}">
+			100%
+		</button>
+	</div>
 
+	<label>
+		<input type="checkbox" bind:checked={visible}>
+		사라지는 버튼
+	</label>
+
+	{#if visible}
+		<h2 transition:fade>
+			사라진다..
+		</h2>
+	{/if}
 </main>
+
+
 
 <script lang="ts">
 	import Fab, { Icon } from '@smui/fab';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 
 	const progress = tweened(0, {
 		duration: 400,
@@ -49,6 +66,7 @@
 
 	export let name;
 	let color = 'red';
+	let visible = true;
 
 	const changeColor = () => {
 		if(color === 'blue'){
@@ -67,10 +85,7 @@
 <style>
 	main {
 		text-align: center;
-		width: 100vw;
-		height: 100vh;
 		padding: 1em;
-		max-width: 240px;
 		margin: 0 auto;
 		background-color: white;
 	}
@@ -82,7 +97,6 @@
 	}
 
 	h1 {
-
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
@@ -90,7 +104,7 @@
 
 	@media (min-width: 640px) {
 		main {
-			max-width: none;
+			max-width: 100%;
 		}
 	}
 </style>
