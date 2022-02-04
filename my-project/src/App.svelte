@@ -45,9 +45,7 @@
 	</label>
 
 	{#if visible}
-		<h2 transition:fade>
-			사라진다..
-		</h2>
+		<img transition:fade src="./img/starfish.jpg" alt="뚱이 없다.." />
 	{/if}
 </main>
 
