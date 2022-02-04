@@ -13,7 +13,7 @@
 	</div>
 
 	<!-- progress bar -->
-	<div>
+	<div class="middle-bar">
 		<button on:click={changeColor} value="change">update jean color</button>
 
 		<progress value={$progress}></progress>
@@ -82,8 +82,8 @@
 
 <style>
 	main {
+		width: 100vw;
 		text-align: center;
-		padding: 1em;
 		margin: 0 auto;
 		background-color: white;
 	}
@@ -102,7 +102,11 @@
 
 	@media (min-width: 640px) {
 		main {
-			max-width: 100%;
+			max-width: none;
 		}
+	}
+
+	.middle-bar{
+		background-color: #666666;
 	}
 </style>
