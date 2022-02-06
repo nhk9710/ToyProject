@@ -1,4 +1,7 @@
-
+<div>
+<header>
+	<b>This is Svelte World!</b>
+</header>
 
 <main>
 	<!-- color switching -->
@@ -47,10 +50,21 @@
 	{#if visible}
 		<img transition:fade style="width: 100px; height: 100px" src="https://w.namu.la/s/0c6301df01fc4f180ec65717bad3d0254258abf0be33299e55df7c261040f517518eb9008a1a2cd3d7b8b7777d70182c185bc891b1054dc57b11cc46fd29130a3474f1b75b816024dfdc16b692a0c77c" alt="뚱이 없다.." />
 	{/if}
+
+	<div class="flex-table">
+		<div>
+			아~~~~~~~~
+		</div>
+		<div>
+			회사가기 싫다~~~~~~~~~~~~~
+		</div>
+	</div>
 </main>
+</div>
 
 
 
+<!-- =========================================================================================================== -->
 <script lang="ts">
 	import Fab, { Icon } from '@smui/fab';
 	import { tweened } from 'svelte/motion';
@@ -73,7 +87,7 @@
 			color = 'red';
 		} else{
 			document.querySelector('h3').style.color='blue';
-			document.querySelector('h1').style.color='red';
+			document.querySelector('h1').style.color='blue';
 			color = 'blue';
 		}
 	};
@@ -81,6 +95,13 @@
 </script>
 
 <style>
+	header{
+		background-color: #ff7825;
+		text-align: center;
+		font-size: 4em;
+		color: white;
+	}
+
 	main {
 		width: 100vw;
 		text-align: center;
@@ -108,5 +129,10 @@
 
 	.middle-bar{
 		background-color: #666666;
+	}
+
+	.flex-table{
+		display: flex;
+		justify-content: space-between;
 	}
 </style>
