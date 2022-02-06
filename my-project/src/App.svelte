@@ -7,13 +7,7 @@
 	<!-- color switching -->
 	<h1>{color}</h1> <h2>{name}!</h2>
 	<h3>{color} jean</h3>
-	<div class="flexy">
-		<div class="margins">
-			<Fab color="primary" >
-				<Icon class="material-icons">favorite</Icon>
-			</Fab>
-		</div>
-	</div>
+
 
 	<!-- progress bar -->
 	<div class="middle-bar">
@@ -53,12 +47,49 @@
 
 	<div class="flex-table">
 		<div>
-			아~~~~~~~~
+			{#if count < 31}
+			<button on:click={handleClick}>
+				눌러보세요! ====>
+			</button>
+				{:else if 30 <= count}
+				<button disabled>
+					고만눌러 ㅋㅋ;
+				</button>
+			{/if}
 		</div>
 		<div>
-			회사가기 싫다~~~~~~~~~~~~~
+			{#if count < 20}
+				<h5 style="color: white">당신의 클릭수는?</h5>
+				<p>{count}</p>
+				{:else if 21 <= count }
+				<p>진짜 열심히 누르네 ㅋㅋ;</p>
+			{/if}
 		</div>
 	</div>
+	<div>
+		{#if 30 <= count}
+		<img src="https://item.kakaocdn.net/do/3727c16c143eb219d7b32939d9886113f604e7b0e6900f9ac53a43965300eb9a">
+		{/if}
+	</div>
+
+	<div>
+		<h3 class="lucktext">오늘의 운세</h3>
+		<Randomizer list={list} class="lucky"/>
+		<!--<div class="add-box">
+			<form>
+				<input type="text" bind:value={newItem} placeholder="Add New Item">
+				<button class="btn" type="submit" on:click={addItem}>Add+</button>
+			</form>
+		</div>-->
+		<!--<div class="list-box">
+			<ul>
+				{#each list as item, i (item.id)}
+					<li>{i + 1} - d{item.item}</li>
+				{/each}
+			</ul>
+		</div>-->
+	</div>
+
 </main>
 </div>
 
@@ -66,10 +97,36 @@
 
 <!-- =========================================================================================================== -->
 <script lang="ts">
-	import Fab, { Icon } from '@smui/fab';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import Randomizer from './Randomizer.svelte';
+
+	/*==============random=================================*/
+	let list=[
+		{item:'오늘은 대길!!', id: 1},
+		{item:'오늘은 대흉!!!', id: 2},
+		{item:'페이지 주인장 밥사주기!!', id: 3},
+		{item:'길가다 100원 줍는 날!!', id: 4},
+		{item:'재수 없는 날!!', id: 5},
+		{item:'뭔가 뭔가 일어나는 날!!', id: 6},
+		{item:'배가 많이 고파지는 날!!', id: 7},
+		{item:'페이지 주인 실력에 감탄하는 날!!', id: 8},
+		{item:'조용히 지나가는 날!!', id: 9},
+		{item:'아이유 좋은날!!', id: 10},
+
+	];
+	/*let newItem =''
+
+	const addItem = (e) => {
+		e.preventDefault();
+		if(newItem != ''){
+			list.push({item: newItem, id: new Date().getTime()});
+			newItem = '';
+		}
+	}*/
+
+	/*=====================================================*/
 
 	const progress = tweened(0, {
 		duration: 400,
@@ -79,6 +136,13 @@
 	export let name;
 	let color = 'red';
 	let visible = true;
+
+	let count = 0;
+
+	function handleClick() {
+		count += 1;
+	}
+
 
 	const changeColor = () => {
 		if(color === 'blue'){
@@ -132,7 +196,17 @@
 	}
 
 	.flex-table{
+		margin: 0 auto;
+		max-width: 80%;
 		display: flex;
 		justify-content: space-between;
+		background-color: #3eff13;
+		padding: 10px;
+		border-radius: 10px;
 	}
+	.lucktext{
+		font-size: 3em;
+		margin-bottom: 20px;
+	}
+
 </style>
