@@ -1,4 +1,4 @@
-<div>
+<div class="wrap">
 <header>
 	<b>This is Svelte World!</b>
 </header>
@@ -75,19 +75,16 @@
 	<div>
 		<h3 class="lucktext">오늘의 운세</h3>
 		<Randomizer list={list} class="lucky"/>
-		<!--<div class="add-box">
-			<form>
-				<input type="text" bind:value={newItem} placeholder="Add New Item">
-				<button class="btn" type="submit" on:click={addItem}>Add+</button>
-			</form>
-		</div>-->
-		<!--<div class="list-box">
-			<ul>
-				{#each list as item, i (item.id)}
-					<li>{i + 1} - d{item.item}</li>
-				{/each}
-			</ul>
-		</div>-->
+	</div>
+
+	<div class="randomProduct">
+		<div>
+			<h1><span style="color: #3eff13">랜</span><span style="color: rebeccapurple">덤</span><span style="color: deepskyblue">뽑</span><span style="color: #ff7825">기</span></h1>
+			<p>소지금 : {money}원</p>
+		</div>
+		<button class="getProduct" on:click={gotchaProduct}>+</button>
+
+		<p>뽑기 아이템: {item}</p>
 	</div>
 
 </main>
@@ -116,15 +113,20 @@
 		{item:'아이유 좋은날!!', id: 10},
 
 	];
-	/*let newItem =''
 
-	const addItem = (e) => {
-		e.preventDefault();
-		if(newItem != ''){
-			list.push({item: newItem, id: new Date().getTime()});
-			newItem = '';
-		}
-	}*/
+	let product=[
+		{item:'또래오래 양념치킨', id: 1},
+		{item:'돋보기 안경', id: 2},
+		{item:'헌 옷', id: 3},
+		{item:'노호관 명함', id: 4},
+		{item:'무신사 스탠다드', id: 5},
+		{item:'고오급 마우스', id: 6},
+		{item:'맥북', id: 7},
+		{item:'일회용 마스크', id: 8},
+		{item:'낡은 키보드', id: 9},
+		{item:'전설급 츄르', id: 10},
+
+	]
 
 	/*=====================================================*/
 
@@ -136,11 +138,26 @@
 	export let name;
 	let color = 'red';
 	let visible = true;
+	let money = 1000;
 
 	let count = 0;
 
+	let item = '';
+
 	function handleClick() {
 		count += 1;
+	}
+
+	const gotchaProduct = (e) => {
+		e.preventDefault();
+		/*item = product[Math.floor(Math.random() * product.length)].item.toUpperCase();
+		if (money != 0){
+			money -= 200;
+		}
+		else if (money == 0){
+			alert('돈을 다썼어요~')
+		}*/
+		alert('개발중이다에요~ 좋은아이디어 있으면 알려달라에요~')
 	}
 
 
@@ -185,6 +202,7 @@
 		font-weight: 100;
 	}
 
+
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
@@ -209,4 +227,14 @@
 		margin-bottom: 20px;
 	}
 
+	.wrap{
+		width: 100%;
+		height: 100%;
+	}
+
+	.randomProduct{ margin-top: 30px; border-top: 2px solid #ff7825 }
+	.randomProduct div h1{ font-weight: bolder; }
+
+	.getProduct{ background: #ff7825; color: white; padding: 10px; font-size: 2em; font-weight: bolder; border: 1px solid #ff7825; border-radius: 100px; cursor: pointer }
+	.getProduct:hover{ transition: all 0.3s; transform: rotate(360deg) }
 </style>
